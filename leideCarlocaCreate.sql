@@ -1,3 +1,7 @@
+CREATE DATABASE carloca_ada;
+
+USE carloca_ada;
+
 -- Create Cliente
 CREATE TABLE `CLIENTE` ( 
   `id_cliente` INT AUTO_INCREMENT NOT NULL,
@@ -7,36 +11,30 @@ CREATE TABLE `CLIENTE` (
   CONSTRAINT `PRIMARY` PRIMARY KEY (`id_cliente`)
 );
 
---Create Carro
-REATE TABLE `CARRO` ( 
-  `id_carro` INT AUTO_INCREMENT NOT NULL,
-  `nome` VARCHAR(255) NOT NULL,
-  `id_modelo` INT NOT NULL,
-  `quilometragem` INT NOT NULL,
-  `cor` ENUM('BRANCO','PRETO','PRATA') NOT NULL,
-  `disponivel` TINYINT NOT NULL DEFAULT 1 ,
-  CONSTRAINT `PRIMARY` PRIMARY KEY (`id_carro`),
-  CONSTRAINT `fk_id_modelo` FOREIGN KEY (`id_modelo`) REFERENCES `MODELO` (`id_modelo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-);
 
---Create Carro_alugados
-CREATE TABLE `CARROS_ALUGADOS` ( 
-  `id_cliente` INT NOT NULL,
-  `id_carro` INT NOT NULL,
-  CONSTRAINT `CARROS_ALUGADOS_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `CLIENTE` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `CARROS_ALUGADOS_ibfk_2` FOREIGN KEY (`id_carro`) REFERENCES `CARRO` (`id_carro`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `uk_cliente_carro` UNIQUE (`id_cliente`)
-);
-
---Create Categoria
+-- Create Categoria
 CREATE TABLE `CATEGORIA` ( 
   `id_categoria` INT AUTO_INCREMENT NOT NULL,
   `nome` VARCHAR(255) NOT NULL,
   CONSTRAINT `PRIMARY` PRIMARY KEY (`id_categoria`)
 );
 
+-- Create Versao
+CREATE TABLE `VERSAO` ( 
+  `id_versao` INT AUTO_INCREMENT NOT NULL,
+  `nome` VARCHAR(255) NOT NULL,
+  CONSTRAINT `PRIMARY` PRIMARY KEY (`id_versao`)
+);
 
---Create Endereco
+-- Create Montadora
+CREATE TABLE `MONTADORA` ( 
+  `id_montadora` INT AUTO_INCREMENT NOT NULL,
+  `nome` VARCHAR(255) NOT NULL,
+  CONSTRAINT `PRIMARY` PRIMARY KEY (`id_montadora`)
+);
+
+
+-- Create Endereco
 CREATE TABLE `ENDERECO` ( 
   `id_endereco` INT AUTO_INCREMENT NOT NULL,
   `rua` VARCHAR(255) NOT NULL,
@@ -45,8 +43,7 @@ CREATE TABLE `ENDERECO` (
   CONSTRAINT `PRIMARY` PRIMARY KEY (`id_endereco`)
 );
 
-
---Create Locadora
+-- Create Locadora
 CREATE TABLE `LOCADORA` ( 
   `id_locadora` INT AUTO_INCREMENT NOT NULL,
   `nome` VARCHAR(255) NOT NULL,
@@ -55,7 +52,7 @@ CREATE TABLE `LOCADORA` (
   CONSTRAINT `fk_id_endereco` FOREIGN KEY (`id_endereco`) REFERENCES `ENDERECO` (`id_endereco`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
---Create MOdelo
+-- Create MOdelo
 CREATE TABLE `MODELO` ( 
   `id_modelo` INT AUTO_INCREMENT NOT NULL,
   `nome` VARCHAR(35) NOT NULL,
@@ -67,21 +64,31 @@ CREATE TABLE `MODELO` (
   CONSTRAINT `fk_id_montadora` FOREIGN KEY (`id_montadora`) REFERENCES `MONTADORA` (`id_montadora`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_id_versao` FOREIGN KEY (`id_versao`) REFERENCES `VERSAO` (`id_versao`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
---Create Montadora
-CREATE TABLE `MONTADORA` ( 
-  `id_montadora` INT AUTO_INCREMENT NOT NULL,
+
+-- Create Carro
+CREATE TABLE `CARRO` ( 
+  `id_carro` INT AUTO_INCREMENT NOT NULL,
   `nome` VARCHAR(255) NOT NULL,
-  CONSTRAINT `PRIMARY` PRIMARY KEY (`id_montadora`)
+  `id_modelo` INT NOT NULL,
+  `quilometragem` INT NOT NULL,
+  `cor` ENUM('BRANCO','PRETO','PRATA') NOT NULL,
+  `disponivel` TINYINT NOT NULL DEFAULT 1 ,
+  CONSTRAINT `PRIMARY` PRIMARY KEY (`id_carro`),
+  CONSTRAINT `fk_id_modelo` FOREIGN KEY (`id_modelo`) REFERENCES `MODELO` (`id_modelo`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
---Create Versao
-CREATE TABLE `VERSAO` ( 
-  `id_versao` INT AUTO_INCREMENT NOT NULL,
-  `nome` VARCHAR(255) NOT NULL,
-  CONSTRAINT `PRIMARY` PRIMARY KEY (`id_versao`)
+
+-- Create Carro_alugados 
+
+CREATE TABLE `CARROS_ALUGADOS` ( 
+  `id_cliente` INT NOT NULL,
+  `id_carro` INT NOT NULL,
+  CONSTRAINT `CARROS_ALUGADOS_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `CLIENTE` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `CARROS_ALUGADOS_ibfk_2` FOREIGN KEY (`id_carro`) REFERENCES `CARRO` (`id_carro`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `uk_cliente_carro` UNIQUE (`id_cliente`)
 );
 
---Create Registro_Locacao
+
 CREATE TABLE `REGISTRO_LOCACAO` ( 
   `id_registro_locacao` INT AUTO_INCREMENT NOT NULL,
   `id_cliente` INT NOT NULL,
@@ -97,6 +104,4 @@ CREATE TABLE `REGISTRO_LOCACAO` (
   CONSTRAINT `fk_id_locadora` FOREIGN KEY (`id_locadora`) REFERENCES `LOCADORA` (`id_locadora`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `uk_carro_locado` UNIQUE (`id_carro`)
 );
-
-
 

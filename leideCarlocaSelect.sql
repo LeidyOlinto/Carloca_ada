@@ -1,35 +1,48 @@
- --Selecionar todos os carro:
+USE carloca_ada;
+
+-- Selecionar cliente:
+ SELECT * FROM CLIENTE;
+
+ -- Selecionar todos os carro:
  SELECT * FROM CARRO;
---Selecionar todos os modelo:
+
+-- Selecionar todos os modelo:
  SELECT * FROM MODELO;
- --Selecionar todos os carr:
+
+ -- Selecionar montadora:
  SELECT * FROM MONTADORA;
+
+-- Selecionar locadora:
  SELECT * FROM LOCADORA;
---Selecionar todos os carros disponíveis:
+
+-- Selecionar todos os carros NÃO disponíveis:
+  SELECT * FROM CARRO WHERE disponivel = 0;
+
+-- Selecionar todos os carros disponíveis:
   SELECT * FROM CARRO WHERE disponivel = 1;
 
-  --Selecionar todos os clientes:
+  -- Selecionar todos os clientes:
  SELECT * FROM CLIENTE WHERE id_cliente;
 
---Selecionar id de carros alugados:
+-- Selecionar id de carros alugados:
 SELECT * FROM CARROS_ALUGADOS;
 
---Selecionar todos os enderecos:
+-- Selecionar todos os enderecos:
 SELECT * FROM ENDERECO;
 
---Selecionar a quilometragem atual de um carro específico:
+-- Selecionar a quilometragem atual de um carro específico:
 SELECT id_carro, quilometragem
 FROM CARRO
 WHERE id_carro = (id_carro);
 
- --Selecionar todos os carros alugados por um cliente específico:
+ -- Selecionar todos os carros alugados por um cliente específico:
  SELECT c.*, ca.id_cliente
 FROM CARRO c
 JOIN CARROS_ALUGADOS ca ON c.id_carro = ca.id_carro
 WHERE ca.id_cliente = (ca.id_cliente);
 
 
---Selecionar a localização atual de um carro específico:
+-- Selecionar a localização atual de um carro específico:
 SELECT l.*
 FROM LOCADORA l
 JOIN REGISTRO_LOCACAO r ON l.id_locadora = r.id_locadora
