@@ -1,4 +1,4 @@
-### O presente respositório visa expor uma possível solução uma aplicação simples e em interface de linha de comando de uma _Locadora-de-carro_ (`ToDo List`) que foi solicitada como requisito para finalização do módulo de _Banco de dados(Mysql)_ do curso de _back-end_ ministrado pela [ADA](https://ada.tech/) em parceria com [iFood](https://www.ifood.com.br/).
+### O presente respositório visa expor uma possível solução uma aplicação simples e em interface de linha de comando de uma _Locadora-de-carro_ que foi solicitada como requisito para finalização do módulo de _Banco de dados(Mysql)_ do curso de _back-end_ ministrado pela [ADA](https://ada.tech/) em parceria com [iFood](https://www.ifood.com.br/).
 
 ### Requisitos para executar a aplicação
 DbGate .
@@ -29,7 +29,7 @@ Por hora não falaremos de nada relacionado a pagamento, por tanto o foco do pro
 
 [x] Carro:
 
-[x] Carro possui nome,disponivel,cor(branco, preto e prata).
+[x] Carro possui nome,disponivel,cor(branco, preto e prata)
 
 [x] Modelo possui nome.
 
