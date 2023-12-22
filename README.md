@@ -26,19 +26,29 @@ Por hora não falaremos de nada relacionado a pagamento, por tanto o foco do pro
 #### Os requisitos do projeto foram originalmente definidos como:
 
 [x] Histórico
+
 [x] Carro:
+
 [x] Carro possui nome,disponivel,cor(branco, preto e prata).
+
 [x] Modelo possui nome.
+
 [x] Montadora possui nome.
+
 [x] Versão possui nome.
+
 [x] Categoria possui nome(hatch, sedam compacto, sedam médio, SUV, etc...)
 
 [X]  Locadora
+
 [X]  Locadora possui nome, data e quiolometragem.
+
 [x]  Endereço
 
 [x] Cliente, possui nome, cpf e telefone.
 
 [x] Iserts
+
 [x] Selects
+
 [X] Diagrama.
